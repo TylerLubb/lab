@@ -1,33 +1,30 @@
 class Television:
-    MIN_CHANNEL = 0  # Minimum TV channel
-    MAX_CHANNEL = 3  # Maximum TV channel
+    """
+    A class representing details for a television object
+    """
+    MIN_CHANNEL: int = 0  # Minimum TV channel
+    MAX_CHANNEL: int = 3  # Maximum TV channel
 
-    MIN_VOLUME = 0  # Minimum TV volume
-    MAX_VOLUME = 2  # Maximum TV volume
+    MIN_VOLUME: int = 0  # Minimum TV volume
+    MAX_VOLUME: int = 2  # Maximum TV volume
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
-        - Create a private variable to store the TV channel. It should be set to the minimum TV channel by default.
-        - Create a private variable to store the TV volume. It should be set to the minimum TV volume by default.
-        - Create a private variable to store the TV status. The TV should start when it is off.
+        Constructor to create initial state of a television object
         """
         self.__channel = Television.MIN_CHANNEL
         self.__volume = Television.MIN_VOLUME
         self.__status = False
 
-    def power(self):
+    def power(self) -> None:
         """
-        - This method should be used to turn the TV on/off.
-        - If called on a TV object that is off, the TV object should be turned on.
-        - If called on a TV object that is on, the TV object should be turned off.
+        Method to toggle power from on to off and off to on
         """
         self.__status = not self.__status
 
-    def channel_up(self):
+    def channel_up(self) -> None:
         """
-        - This method should be used to adjust the TV channel by incrementing its value.
-        - It should only work for a TV that is on.
-        - If the method is called when one is on the MAX_CHANNEL, it should take the TV channel back to the MIN_CHANNEL.
+        Method to increment the variable channel if power is on
         """
         if self.__status:
             if self.__channel < Television.MAX_CHANNEL:
@@ -35,11 +32,9 @@ class Television:
             else:
                 self.__channel = Television.MIN_CHANNEL
 
-    def channel_down(self):
+    def channel_down(self) -> None:
         """
-        - This method should be used to adjust the TV channel by decrementing its value.
-        - It should only work for a TV that is on.
-        - If the method is called when one is on the MIN_CHANNEL, it should take the TV channel back to the MAX_CHANNEL.
+        Method to decrement the variable channel if power is on
         """
         if self.__status:
             if self.__channel > Television.MIN_CHANNEL:
@@ -47,27 +42,23 @@ class Television:
             else:
                 self.__channel = Television.MAX_CHANNEL
 
-    def volume_up(self):
+    def volume_up(self) -> None:
         """
-        - This method should be used to adjust the TV volume by incrementing its value.
-        - It should only work for a TV that is on.
-        - If the method is called when one is on the MAX_VOLUME, the volume should not be adjusted.
+        Method to increment the variable volume if power is on
         """
         if self.__status and self.__volume < Television.MAX_VOLUME:
             self.__volume += 1
 
-    def volume_down(self):
+    def volume_down(self) -> None:
         """
-        - This method should be used to adjust the TV volume by decrementing its value.
-        - It should only work for a TV that is on.
-        - If the method is called when one is on the MIN_VOLUME, the volume should not be adjusted.
+        Method to decrement the variable channel if power is on
         """
         if self.__status and self.__volume > Television.MIN_VOLUME:
             self.__volume -= 1
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
-        - This method should be used to return the TV status using the format shown in the comments of main.py
+        Method to return television status for channel, volume, and power
         """
         return f'TV status: is on = {self.__status}, Channel = {self.__channel}, Volume = {self.__volume}'
 
